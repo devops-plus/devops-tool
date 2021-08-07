@@ -11,28 +11,34 @@
 
     ```shell
     # 打包
-    docker build -t  devops-tool/maven:3.5.2-jdk-8-alpine .
+    docker build -t  devops-tool/maven:3.8.1-openjdk-8-slim .
 
     # 上传
-    docker tag devops-tool/maven:3.5.2-jdk-8-alpine registry.cn-shenzhen.aliyuncs.com/devops-tool/maven:3.5.2-jdk-8-alpine
+    docker tag devops-tool/maven:3.8.1-openjdk-8-slim registry.cn-shenzhen.aliyuncs.com/devops-tool/maven:3.8.1-openjdk-8-slim
 
     docker login --username=xxx@qq.com registry.cn-shenzhen.aliyuncs.com
     
-    docker push registry.cn-shenzhen.aliyuncs.com/devops-tool/maven:3.5.2-jdk-8-alpine 
+    docker push registry.cn-shenzhen.aliyuncs.com/devops-tool/maven:3.8.1-openjdk-8-slim 
     ```
 
     一步到位：
     ```shell
-    docker build -t  registry.cn-shenzhen.aliyuncs.com/devops-tool/maven:3.5.2-jdk-8-alpine .
+    docker build -t  registry.cn-shenzhen.aliyuncs.com/devops-tool/maven:3.8.1-openjdk-8-slim .
 
     docker login --username=xxx@qq.com registry.cn-shenzhen.aliyuncs.com
 
-    docker push registry.cn-shenzhen.aliyuncs.com/devops-tool/maven:3.5.2-jdk-8-alpine 
+    docker push registry.cn-shenzhen.aliyuncs.com/devops-tool/maven:3.8.1-openjdk-8-slim 
     ```
 4. 使用自定义maven镜像
 
     ```shell
-    docker pull registry.cn-shenzhen.aliyuncs.com/devops-tool/maven:3.5.2-jdk-8-alpine 
+    docker pull registry.cn-shenzhen.aliyuncs.com/devops-tool/maven:3.8.1-openjdk-8-slim 
+    ```
+
+    或直接使用它来打包maven项目
+    ```
+    docker run -it --rm --name my-maven-project -v "{maven项目目录}":/usr/src/mymaven -w /usr/src/mymaven devops-tool/maven:3.8.1-openjdk-8-slim mvn clean package -Duser.timezone=Asia/Shanghai
+
     ```
 
 参考：
