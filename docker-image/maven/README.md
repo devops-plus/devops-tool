@@ -16,6 +16,8 @@
     # 上传
     docker tag devops-tool/maven:3.5.2-jdk-8-alpine registry.cn-shenzhen.aliyuncs.com/devops-tool/maven:3.5.2-jdk-8-alpine
 
+    docker login --username=xxx@qq.com registry.cn-shenzhen.aliyuncs.com
+    
     docker push registry.cn-shenzhen.aliyuncs.com/devops-tool/maven:3.5.2-jdk-8-alpine 
     ```
 
@@ -23,10 +25,15 @@
     ```shell
     docker build -t  registry.cn-shenzhen.aliyuncs.com/devops-tool/maven:3.5.2-jdk-8-alpine .
 
+    docker login --username=xxx@qq.com registry.cn-shenzhen.aliyuncs.com
+
     docker push registry.cn-shenzhen.aliyuncs.com/devops-tool/maven:3.5.2-jdk-8-alpine 
     ```
 4. 使用自定义maven镜像
 
+    ```shell
+    docker pull registry.cn-shenzhen.aliyuncs.com/devops-tool/maven:3.5.2-jdk-8-alpine 
+    ```
 
 参考：
 * [docker-hub-maven](https://hub.docker.com/_/maven/?tab=tags&page=1&ordering=last_updated)
