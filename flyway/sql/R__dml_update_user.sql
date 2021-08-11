@@ -1,0 +1,1 @@
+update sys_user set age=24 where full_name='joy';
