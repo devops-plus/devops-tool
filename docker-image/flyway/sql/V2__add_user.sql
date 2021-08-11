@@ -1,0 +1,1 @@
+insert into sys_user(full_name,age) values ('joy',18);
