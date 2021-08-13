@@ -20,7 +20,6 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-
     @GetMapping("/list")
     private List<User> getUserList() {
         return userService.getUserList();
@@ -40,9 +39,12 @@ public class UserController {
     @PostMapping("")
     public boolean addUser(@RequestBody User user) {
         List<User> userList = userService.getUserList();
-        if (user == null) {
-            int id = userList.size() + 1;
+        int id = userList.size() + 1;
+
+        if (user.getName() == null && user.getAge() == null) {
             user = User.builder().id(id).name("xiecf").age(24).build();
+        } else {
+            user.setId(id);
         }
         userList.add(user);
         return true;
