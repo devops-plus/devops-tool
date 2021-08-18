@@ -1,6 +1,14 @@
 # 使用newman+postman在docker中运行自动化接口测试
 ## 一、准备工作
-本目录下提供了基于Spring Boot编写的最基础的Restful风格api服务。
+* api接口服务
+
+    本目录下提供了基于Spring Boot编写的最基础的Restful风格api服务。
+* postman脚本
+
+    使用postman的collection功能，记录接口脚本，导出后得到如下文件：
+        
+        - xxx.postman_collection.json
+        - xxx.postman_environment.json
 
 ## 二、在Docker下执行接口测试
 ```shell
@@ -33,3 +41,29 @@ docker run --rm -v D:\workspace\devops-tool\postman:/etc/newman -t postman/newma
 * [Postman/Newman+Docker+Jenkins/Pipeline 做接口自动化测试](https://blog.csdn.net/galen2016/article/details/106839394)
 * [docker-hub postman/newman](https://hub.docker.com/r/postman/newman)
 * [Newman with Docker](https://learning.postman.com/docs/running-collections/using-newman-cli/newman-with-docker/)
+
+# 三、延伸阅读
+postman在接口测试这块还是挺强大的，以前用过全局/局部变量，environments，Pre-request Script,Tests
+[Postman高级教程][Postman-Tutorial]让我对它有了更深的理解：
+
+- [拦截重发HTTP请求](https://blog.csdn.net/Al_assad/article/details/81370171)
+    > 类似工具有fildder
+
+- [导入csv/json外部数据](https://blog.csdn.net/Al_assad/article/details/81370183)
+
+    > **csv/json外部数据可以实现接口多场景参数的传递（多测试用例）**
+
+- [使用xmysql链接mysql数据库](https://blog.csdn.net/Al_assad/article/details/81370196)
+   
+    > **postman发送请求后，断言过程中，将接口返回数据与数据库直接对比，xmysql可以直接以restApi方式读取数据库表数据**
+    > 
+    > 也可查看：[postman 使用 xmysql 连接 mysql 的基本操作](https://blog.csdn.net/adorable_/article/details/111703638)
+
+ps：
+    xmysql也可以用nocodb来实现，关于nocodb信息，参考下面的链接。
+
+[Postman-Tutorial]: https://blog.csdn.net/al_assad/category_7902146.html
+
+参考：
+* [github-nocodb](https://github.com/nocodb/nocodb)
+* [github-nocodb-install-with-docker-cmopse](https://github.com/nocodb/nocodb/blob/master/docker-compose/mysql/docker-compose.yml)
