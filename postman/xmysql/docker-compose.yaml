@@ -1,0 +1,11 @@
+db-api: &db-api
+    build:
+      context: ./
+      dockerfile: ./dev.Dockerfile
+    environment:
+      DATABASE_HOST: 'db'
+      DATABASE_USER: 'root'
+      DATABASE_PASSWORD: 'pass'
+      DATABASE_NAME: 'classicmodels'
+    ports:
+      - "3002:80"

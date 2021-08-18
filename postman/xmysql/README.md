@@ -1,0 +1,1 @@
+可以将xmysql单独做成docker image，使用docker run命令时再去指定要链接的数据库即可。
