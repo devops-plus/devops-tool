@@ -21,9 +21,17 @@
 以下三种命令都可以正常运行
 
 **注意，需要挂载/etc/newman的地方**
-* 1. 传递environment或xxx.postman_collection.json
-* 2. 需要导出测试报告
+* 1. 指定本地collection，如xxx.postman_collection.json
+    > user-manager.postman_collection.json
 
+* 2. 指定本地environment，如xxx.postman_environment.json
+    > --environment=vaiwan.postman_environment.json
+* 3. 使用--reporters导出测试报告
+    > --reporters junit --reporter-junit-export="newman-report.xml"
+    >
+    > --reporters json --reporter-json-export newman-report.json
+* 4. 指定本地data file，详情参考：[using data file](/external/README.md)
+    > --iteration-data holiday.csv 
 ### 1 - 执行公开的collection
 ```shell
 docker run --rm -t postman/newman run "https://www.getpostman.com/collections/06021083e32874319f67"
