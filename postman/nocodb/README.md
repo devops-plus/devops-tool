@@ -44,12 +44,14 @@ docker-compose -f .\docker-compose-postgres.yaml up -d
 
   连接成功后既可以将mysql数据库中表和数据展示出来，更多功能还需自行探索。
 
-  ps：注意右上角，点击`Copy auth token`，得到的token值将在后续api访问时通过http request header 的键`xc-auth`。
+  ps：注意右上角，点击`Copy auth token`，得到的token值将在后续api访问时通过http request header 的`xc-auth`键传递给nocodb。
 ![连接成功](./images/nocodb-05.png)
 
 ## 三、通过api访问mysql数据
 ### 1 - 在nocodb中swagger页面访问mysql数据
 * nocodb swagger
+
+  在上一步`Copy auth token`下方，点击“Swagger Apis Doc”，打开swagge页面。
 ![nocodb swagger](./images/nocodb-06.png)
 
 * api 接口授权
@@ -67,18 +69,20 @@ docker-compose -f .\docker-compose-postgres.yaml up -d
   注意观察请求头，添加了xc-auth键值  
 ![设置api请求路径、参数](./images/nocodb-09.png)
 
-* 发送请求
-
-  为了通用，api_url、project_name和table_name都使用了变量（前者为vaiwan中定义的环境变量，后者为集合变量）。
-  注意观察请求结果，与前面swagger中返回一致。
-![发送请求](./images/nocodb-10.png)
-
 * 内网穿透（可选）
 
   因为使用了postman web app来模拟请求，nocodb又是直接部署在本地的。如果nocodb有外网地址或者本地安装了postman，这步可以省略。
 
   注意：上面的请求路径也被记录下来，403和200分别是添加xc-auth请求头前后的请求结果。
 ![内网穿透](./images/nocodb-11.png)
+
+* 发送请求
+
+  为了通用，api_url、project_name和table_name都使用了变量（前者为vaiwan中定义的环境变量，后者为集合变量）。
+  注意观察请求结果，与前面swagger中返回一致。
+![发送请求](./images/nocodb-10.png)
+
+
 
 参考：
 * [nocodb APIs Access](https://docs.nocodb.com/setup-and-usages/apis-access)
