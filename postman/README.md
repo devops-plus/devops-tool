@@ -30,7 +30,7 @@
     > --reporters junit --reporter-junit-export="newman-report.xml"
     >
     > --reporters json --reporter-json-export newman-report.json
-* 4. 指定本地data file，详情参考：[using data file](/external/README.md)
+* 4. 指定本地data file，详情参考：[external/README.md](external/README.md)
     > --iteration-data holiday.csv 
 ### 1 - 执行公开的collection
 ```shell
@@ -62,8 +62,11 @@ docker run --rm -v D:\workspace\devops-tool\postman:/etc/newman -t postman/newma
 * [Newman with Docker](https://learning.postman.com/docs/running-collections/using-newman-cli/newman-with-docker/)
 
 ## 三、延伸阅读
-postman在接口测试这块还是挺强大的，以前用过全局/局部变量，environments，Pre-request Script,Tests
-[Postman高级教程][Postman-Tutorial]让我对它有了更深的理解：
+postman在接口测试这块还是挺强大的，以前用过全局/局部变量，environments，Pre-request Script,Tests，下面的教程让我对它有了更深的理解：
+- 环境变量
+  > [【Postman】7 Postman环境变量的使用（globals和environment）](https://zhuanlan.zhihu.com/p/108497462)
+- [预处理脚本、断言](https://blog.csdn.net/Al_assad/article/details/81370153)
+   > [【Postman】8 Postman pre-request的使用](https://zhuanlan.zhihu.com/p/108497663)
 
 - [拦截重发HTTP请求](https://blog.csdn.net/Al_assad/article/details/81370171)
     > 类似工具有fildder
@@ -81,8 +84,14 @@ postman在接口测试这块还是挺强大的，以前用过全局/局部变量
     ps：
         xmysql也可以用nocodb来实现，关于nocodb信息，参考下面的链接。
 
-[Postman-Tutorial]: https://blog.csdn.net/al_assad/category_7902146.html
+- Postman使用mock进行挡板测试
+   > [Postman使用mock进行挡板测试（1）](https://zhuanlan.zhihu.com/p/111557531)
+   > 
+   > [Postman使用mock进行挡板测试（2）](https://zhuanlan.zhihu.com/p/111799812)
+- Postman工作流
+   > [Postman入门13 创建工作流](https://zhuanlan.zhihu.com/p/123360603)
 
 参考：
+* [Postman工具使用系列文章传送门](https://zhuanlan.zhihu.com/p/129043757)
 * [github-nocodb](https://github.com/nocodb/nocodb)
 * [github-nocodb-install-with-docker-cmopse](https://github.com/nocodb/nocodb/blob/master/docker-compose/mysql/docker-compose.yml)
