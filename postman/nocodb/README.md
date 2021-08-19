@@ -22,3 +22,10 @@ docker-compose -f .\docker-compose-mysql.yaml up -d
 ```shell
 docker-compose -f .\docker-compose-postgres.yaml up -d 
 ```
+
+## 二、配置nocodb
+
+## 三、通过nocodb直接访问mysql
+参考：
+* [nocodb APIs Access](https://docs.nocodb.com/setup-and-usages/apis-access)
+* [nocodb REST APIs](https://docs.nocodb.com/developer-resources/rest-apis)
