@@ -7,7 +7,14 @@ docker run -d --name nocodb -v nocodb-data:/usr/app/data/ -p 8080:8080 nocodb/no
 
 ## 二、docker-compose、mysql运行nocodb
 具体内容参见docker-compose-mysql.yaml
+
 ```shell
-docker-compose -f .\docker-compose-nocodb.yaml up -d
+docker-compose -f .\docker-compose-mysql.yaml up -d
 ```
 
+## 三、docker-compose、postgres运行nocodb
+具体内容参见docker-compose-postgres.yaml
+
+```shell
+docker-compose -f .\docker-compose-postgres.yaml up -d 
+```
