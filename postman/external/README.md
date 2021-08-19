@@ -54,7 +54,8 @@ date,type,name,week
 ```shell
  # holiday.csv 在目录D:\workspace\devops-tool\postman下，这里必须挂载/etc/newman目录，否则找不到文件
  # --iteration-data 也可以简写-d
- docker run --rm -v D:\workspace\devops-tool\postman:/etc/newman -t postman/newman run "https://www.getpostman.com/collections/4e3cd81f88616d487f6c"  --iteration-data holiday.csv
+ # -n（可选） 可以指定迭代次数，我这里holiday.csv里面有6行数据，这里指定-n 1就是只执行第一行数据
+ docker run --rm -v D:\workspace\devops-tool\postman:/etc/newman -t postman/newman run "https://www.getpostman.com/collections/4e3cd81f88616d487f6c"  --iteration-data holiday.csv -n 1
 ```
 
 参考：
