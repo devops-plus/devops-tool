@@ -49,6 +49,14 @@ date,type,name,week
 查看断言结果
  ![查看断言结果](images/postman-04.png)
 
+## 四、使用docker 执行collection（data file）
+
+```shell
+ # holiday.csv 在目录D:\workspace\devops-tool\postman下，这里必须挂载/etc/newman目录，否则找不到文件
+ # --iteration-data 也可以简写-d
+ docker run --rm -v D:\workspace\devops-tool\postman:/etc/newman -t postman/newman run "https://www.getpostman.com/collections/4e3cd81f88616d487f6c"  --iteration-data holiday.csv
+```
+
 参考：
 * [postman 详细使用 (4)：导入 csv、json 外部数据](https://blog.csdn.net/Al_assad/article/details/81370183)
 * [Using CSV and JSON Data Files in the Postman Collection Runner](https://blog.postman.com/using-csv-and-json-files-in-the-postman-collection-runner/)
