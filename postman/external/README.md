@@ -1,3 +1,4 @@
+# Running collections with data file via Newman
 ## 一、postman设置
 
 * api-url:
@@ -57,6 +58,14 @@ date,type,name,week
  # -n（可选） 可以指定迭代次数，我这里holiday.csv里面有6行数据，这里指定-n 1就是只执行第一行数据
  docker run --rm -v D:\workspace\devops-tool\postman:/etc/newman -t postman/newman run "https://www.getpostman.com/collections/4e3cd81f88616d487f6c"  --iteration-data holiday.csv -n 1
 ```
+
+通常来说，一个collection里面接口不止一个，但是-d 只能指定一个数据文件(*.csv/*.json)，如果多个接口需要使用数据文件，可以指定`--folder <name>`命令，比如
+```shell
+docker run --rm -v ${pwd}:/etc/newman -t postman/newman run "https://www.getpostman.com/collections/4e3cd81f88616d487f6c" --folder <name> --iteration-data holiday.csv -n 1
+```
+更多newman cli 命令参考资料如下：
+* [Running collections on the command line with Newman](https://learning.postman.com/docs/running-collections/using-newman-cli/command-line-integration-with-newman/)
+* [Run collections with file uploads using Newman](https://blog.postman.com/run-collections-with-file-uploads-using-newman/)
 
 参考：
 * [postman 详细使用 (4)：导入 csv、json 外部数据](https://blog.csdn.net/Al_assad/article/details/81370183)
