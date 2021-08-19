@@ -1,0 +1,39 @@
+# 本文件用于一键安装、启动nocodb，nocodb数据使用mysql存储
+version: '3.3'
+
+services:
+  nocodb-service-mysql:
+    image: mysql:5.7
+    container_name: nocodb-mysql
+    # port映射可以关闭，这里是为了方便在宿主机查看数据
+    ports:
+        - "3306:3306"
+    volumes:
+      - nocodb-data:/var/lib/mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: 123456
+      MYSQL_DATABASE: noco_db
+      MYSQL_USER: noco
+      MYSQL_PASSWORD: nocodb
+    healthcheck:
+      test: [ "CMD", "mysqladmin" ,"ping", "-h", "localhost" ]
+      timeout: 20s
+      retries: 10
+
+  nocodb-service-app:
+    depends_on:
+      nocodb-service-mysql:
+        condition: service_healthy
+    image: nocodb/nocodb:latest
+    container_name: nocodb-app
+    ports:
+      - "8080:8080"
+      - "8081:8081"
+      - "8082:8082"
+      - "8083:8083"
+    restart: always
+    environment:
+      NC_DB: "mysql2://nocodb-mysql:3306?u=noco&p=nocodb&d=noco_db"
+volumes:
+  nocodb-data: {}
