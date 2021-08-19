@@ -8,7 +8,7 @@ services:
     ports: 
       - "5432:5432"  
     volumes:
-      - nocodb_data:/var/lib/postgresql/data
+      - nocodb_postgresql_data:/var/lib/postgresql/data
     environment:
       POSTGRES_PASSWORD: 123456
       POSTGRES_USER: postgres
@@ -37,7 +37,7 @@ services:
     networks: 
       - nocodb-tier
 volumes:
-  nocodb_data: {}
+  nocodb_postgresql_data: {}
 
 networks: 
   nocodb-tier:

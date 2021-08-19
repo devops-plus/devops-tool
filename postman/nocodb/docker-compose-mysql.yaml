@@ -7,15 +7,16 @@ services:
     container_name: nocodb-mysql
     # port映射可以关闭，这里是为了方便在宿主机查看数据
     ports:
-        - "3306:3306"
+      - "3307:3306"
     volumes:
-      - nocodb-data:/var/lib/mysql
+      - nocodb_mysql_data:/var/lib/mysql
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: 123456
       MYSQL_DATABASE: noco_db
       MYSQL_USER: noco
       MYSQL_PASSWORD: nocodb
+    # command: --default-authentication-plugin=mysql_native_password --character-set-server=utf8mb4 --collation-server=utf8mb4_general_ci --explicit_defaults_for_timestamp=true
     healthcheck:
       test: [ "CMD", "mysqladmin" ,"ping", "-h", "localhost" ]
       timeout: 20s
@@ -36,4 +37,4 @@ services:
     environment:
       NC_DB: "mysql2://nocodb-mysql:3306?u=noco&p=nocodb&d=noco_db"
 volumes:
-  nocodb-data: {}
+  nocodb_mysql_data: {}
