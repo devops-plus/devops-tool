@@ -2,14 +2,14 @@
 version: '3.3'
 
 services:
-  nocodb-service-mysql:
+  nocodb-service-db:
     image: mysql:5.7
-    container_name: nocodb-mysql
+    container_name: nocodb_mysql
     # port映射可以关闭，这里是为了方便在宿主机查看数据
     ports:
       - "3307:3306"
     volumes:
-      - nocodb_mysql_data:/var/lib/mysql
+      - mysql_data:/var/lib/mysql
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: 123456
@@ -17,17 +17,20 @@ services:
       MYSQL_USER: noco
       MYSQL_PASSWORD: nocodb
     # command: --default-authentication-plugin=mysql_native_password --character-set-server=utf8mb4 --collation-server=utf8mb4_general_ci --explicit_defaults_for_timestamp=true
+    networks: 
+      - default_tier
     healthcheck:
       test: [ "CMD", "mysqladmin" ,"ping", "-h", "localhost" ]
-      timeout: 20s
+      interval: 5s
+      timeout: 60s
       retries: 10
 
   nocodb-service-app:
     depends_on:
-      nocodb-service-mysql:
+      nocodb-service-db:
         condition: service_healthy
     image: nocodb/nocodb:latest
-    container_name: nocodb-app
+    container_name: nocodb_app
     ports:
       - "8080:8080"
       - "8081:8081"
@@ -35,6 +38,12 @@ services:
       - "8083:8083"
     restart: always
     environment:
-      NC_DB: "mysql2://nocodb-mysql:3306?u=noco&p=nocodb&d=noco_db"
+      NC_DB: "mysql2://nocodb_mysql:3306?u=noco&p=nocodb&d=noco_db"
+    networks: 
+      - default_tier
 volumes:
-  nocodb_mysql_data: {}
+  mysql_data: {}
+
+networks: 
+  default_tier:
+    driver: bridge  
