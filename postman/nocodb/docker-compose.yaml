@@ -9,12 +9,12 @@ services:
       - "8080:8080"
     restart: always
     volumes:
-        - nocodb-data:/usr/app/data
+        - sqlite_data:/usr/app/data
     networks: 
-      - nocodb-tier
+      - default_tier
 volumes:
-  nocodb-data: {}
+  sqlite_data: {}
 
 networks: 
-  nocodb-tier:
+  default_tier:
     driver: bridge  
