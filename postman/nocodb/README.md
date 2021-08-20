@@ -3,7 +3,8 @@
 ### 1 - docker、sqlite运行nocodb
 ```shell
 # nocodb默认使用sqlite存储数据，0.10.6版本后数据目录为：/usr/app/data/
-docker run -d --name nocodb -v nocodb-data:/usr/app/data/ -p 8080:8080 nocodb/nocodb
+docker volume create noco_sqlite_data
+docker run -d --name nocodb-app -v noco_sqlite_data:/usr/app/data/ -p 8080:8080 nocodb/nocodb
 
 #或使用docker-compose
 docker-compose up -d
