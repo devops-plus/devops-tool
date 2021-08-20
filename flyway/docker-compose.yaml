@@ -1,28 +1,45 @@
 version: '3'
 services:
-  flyway:
+  flyway-service-db:
+    image: mysql:5.7
+    container_name: flyway_db
+    command: --default-authentication-plugin=mysql_native_password --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+    ports:
+      - 3308:3306
+    volumes: 
+      - mysql_data:/var/lib/mysql      
+    environment:
+      - MYSQL_ROOT_PASSWORD=123456
+      - MYSQL_ROOT_HOST=%
+      - MYSQL_DATABASE=flyway-db
+    security_opt:
+      - seccomp=unconfined
+    networks: 
+      - default_tier
+    healthcheck:
+      test: [ "CMD", "mysqladmin" ,"ping", "-h", "localhost" ]
+      interval: 6s
+      timeout: 20s
+      retries: 5
+
+  flyway-service-app:
     image: flyway/flyway
-    command: -url=jdbc:mysql://db -schemas=test -user=root -password=123456 -connectRetries=60 migrate
+    container_name: flyway_app
+    command: -url=jdbc:mysql://flyway_db -schemas=flyway-db -user=root -password=123456 -connectRetries=60 migrate
     environment:
       - FLYWAY_EDITION=community  # 指定使用社区版
     volumes:
       - ./sql:/flyway/sql
-      # - ./conf:/flyway/conf
+      # - ./conf:/flyway/conf # 如果此处开启/flyway/conf目录映射，上面command命令需要更改为： -connectRetries=60 migrate
+    networks: 
+      - default_tier
     depends_on:
-      - db
-  db:
-    image: mysql:5.7
-    command: --default-authentication-plugin=mysql_native_password --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
-    ports:
-      - 3308:3306
-    environment:
-      - MYSQL_ROOT_PASSWORD=123456
-      - MYSQL_ROOT_HOST=%
-      - MYSQL_DATABASE=test
-    security_opt:
-      - seccomp=unconfined
-    healthcheck:
-      test: ["CMD-SHELL", "nc -z 127.0.0.1 3306 || exit 1"]
-      interval: 1m30s
-      timeout: 60s
-      retries: 6
+      flyway-service-db:
+        condition: service_healthy
+
+volumes:
+  mysql_data: {}
+        
+networks: 
+  default_tier:
+    driver: bridge  
