@@ -5,10 +5,23 @@
     - [x] 修改为国内镜像源
     - [x] 增加maven私库
 
+* [docker运行mysql](mysql)
+    - [x] docker运行mysql
+    - [x] docker-compose运行mysql
+    - [x] docker-compose运行mysql+phpadmin
+
 * [使用flyway进行数据库脚本迁移](flyway)
-    - [ ] flyway+mysql，sql脚本迁移
+    - [x] flyway+mysql，sql脚本迁移
     - [ ] flyway+docker，集成到jenkins流水线
 
+* [内网穿透](pierced/handbook.md)
+    - [x] windows-x64
+        > `ding.exe -config=./ding.cfg -subdomain=devops-tool 8080`
+
+* [postman](postman)
+    - [x] [docker+newman 运行postman脚本](postman)
+    - [x] [使用data-file执行多次请求](postman/data-file)
+    
 * [git私服](gitea)
    
     - [ ] [gitea](https://github.com/boat-house-summer-2021/boat-house-devopsbox/tree/main/devopsbox/gitea)
