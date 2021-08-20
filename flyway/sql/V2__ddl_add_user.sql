@@ -1,1 +1,1 @@
-insert into sys_user(full_name,age) values ('joy',18);
+insert into sys_user(full_name,age) values ('晓峰',18);
