@@ -13,3 +13,5 @@ docker-compose up -d
 # 带有phpadmin，可以使用web管理mysql
 docker-compose -f .\docker-compose-phpadmin.yaml up -d
 ```
+
+更多phpadmin容器化信息，参考：https://hub.docker.com/r/phpmyadmin/phpmyadmin/
