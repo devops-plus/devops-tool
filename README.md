@@ -22,6 +22,12 @@
     - [x] [docker+newman 运行postman脚本](postman)
     - [x] [使用data-file执行多次请求](postman/data-file)
     
+* [nocodb](nocodb)
+    - [x] docker运行nocodb(sqlite)
+    - [x] docker运行nocodb(mysql)
+    - [x] docker运行nocodb(postgres)
+    - [x] 通过nocodb api 直接访问mysql数据库 
+
 * [git私服](gitea)
    
     - [ ] [gitea](https://github.com/boat-house-summer-2021/boat-house-devopsbox/tree/main/devopsbox/gitea)

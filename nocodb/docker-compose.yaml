@@ -1,0 +1,20 @@
+# 默认使用sqlite数据库
+version: '3.3'
+
+services:
+  nocodb-service-app:
+    image: nocodb/nocodb:latest
+    container_name: nocodb-app
+    ports:
+      - "8080:8080"
+    restart: always
+    volumes:
+        - sqlite_data:/usr/app/data
+    networks: 
+      - default_tier
+volumes:
+  sqlite_data: {}
+
+networks: 
+  default_tier:
+    driver: bridge  
